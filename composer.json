@@ -1,5 +1,5 @@
 {
-    "name": "saritasa/php-dingo-api-custom",
+    "name": "saritasa/dingo-api-custom",
     "type": "library",
     "description": "Saritasa customizations for Dingo/Api library",
     "keywords": ["laravel", "blade"],
@@ -15,10 +15,10 @@
         "dingo/api": "1.0.*@dev",
         "illuminate/http": "^5.4",
         "laravel/framework": "^5.4",
-        "saritasa/php-transformers": "^1.0"
+        "saritasa/transformers": "^1.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "~5.7"
+        "phpunit/phpunit": "^5.7"
     },
     "minimum-stability": "stable",
     "autoload": {

@@ -8,6 +8,7 @@ use Dingo\Api\Transformer\Adapter\Fractal;
 use Dingo\Api\Transformer\Binding;
 use Illuminate\Contracts\Pagination\Paginator as IlluminatePaginator;
 use League\Fractal\Manager as FractalManager;
+use League\Fractal\TransformerAbstract;
 
 /**
  * Same as Default Dingo\Api adapter, but uses custom serializer,
@@ -30,7 +31,7 @@ class DingoApiFractalAdapter extends Fractal
      * so this is a modified copy of original transform() method
      *
      * @param mixed $response
-     * @param object $transformer
+     * @param TransformerAbstract $transformer
      * @param Binding $binding
      * @param Request $request
      * @return array

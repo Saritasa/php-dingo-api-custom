@@ -8,7 +8,7 @@ use Dingo\Api\Routing\Helpers;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller;
-use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Validation\Validator;
 use Illuminate\Validation\ValidationException;
 use Saritasa\Transformers\IDataTransformer;
 use Saritasa\Transformers\BaseTransformer;
@@ -45,7 +45,7 @@ abstract class BaseApiController extends Controller
         $validator = $this->getValidationFactory()->make($request->all(), $rules, $messages, $customAttributes);
 
         if ($validator->fails()) {
-            throw new ValidationException($validator->errors());
+            throw new ValidationException($validator);
         }
     }
 }

@@ -1,16 +1,16 @@
-# PHP Blade Directives
+# Dingo API customization
 
-Custom Blade directives for Laravel Applications.
+Custom settings and extensions for Dingo/Api package
 
-See https://laravel.com/docs/5.4/blade
+See https://laravel.com/docs/blade
 
 
 ## Laravel 5.x
 
-Install the ``saritasa/php-blade-directives`` package:
+Install the ```saritasa/dingo-api-custom``` package:
 
 ```bash
-$ composer require saritasa/php-blade-directives
+$ composer require saritasa/dingo-api-custom
 ```
 
 Add the BladeDirectivesServiceProvider service provider ``config/app.php``:

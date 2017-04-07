@@ -1,10 +1,9 @@
 <?php
 
-namespace Saritasa\Transformers;
+namespace Saritasa\DingoApi;
 
-use Saritasa\Transformers\Exceptions\PagingException;
+use Saritasa\Exceptions\PagingException;
 use Illuminate\Contracts\Support\Arrayable;
-use League\Flysystem\NotSupportedException;
 
 /**
  * Read-only paging cursor description.
@@ -45,7 +44,7 @@ class CursorRequest implements Arrayable
             case static::CURRENT:
                 return $this->current;
             default:
-                throw new NotSupportedException('Unknown cursor property requested: '.$name);
+                throw new PagingException('Unknown cursor property requested: '.$name);
         }
     }
 
