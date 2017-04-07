@@ -11,14 +11,14 @@
          bootstrap="test/bootstrap.php"
 >
   <testsuites>
-    <testsuite name="Opbeat Test Suite">
-      <directory>./test/Opbeat/</directory>
+    <testsuite name="Dingo Api customizations Test Suite">
+      <directory>./tests/</directory>
     </testsuite>
   </testsuites>
 
   <filter>
     <whitelist>
-      <directory suffix=".php">./src/Opbeat/</directory>
+      <directory suffix=".php">./src/</directory>
     </whitelist>
   </filter>
 </phpunit>
