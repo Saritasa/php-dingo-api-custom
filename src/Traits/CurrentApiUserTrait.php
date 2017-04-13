@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Extensions;
+namespace Saritasa\DingoApi\Traits;
 
 use App\Models\User;
 use Dingo\Api\Auth\Auth;
