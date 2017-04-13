@@ -2,6 +2,7 @@
 
 namespace Saritasa\DingoApi;
 
+use Dingo\Api\Provider\DingoServiceProvider;
 use Saritasa\DingoApi\Exceptions\ApiExceptionHandler;
 use Illuminate\Support\ServiceProvider;
 
@@ -24,6 +25,7 @@ class SaritasaDingoApiServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerApiExceptionHandler();
+        $this->register(DingoServiceProvider::class);
     }
 
     private function registerApiExceptionHandler()
