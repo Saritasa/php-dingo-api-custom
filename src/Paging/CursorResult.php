@@ -2,7 +2,6 @@
 
 namespace Saritasa\DingoApi;
 
-
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;

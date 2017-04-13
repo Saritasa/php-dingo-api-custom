@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Models\Support;
+namespace Saritasa\DingoApi;
 
 const PAGE = 'page';
 const PAGE_SIZE = 'per_page';
 const TOTAL_PAGES = 'total_pages';
 const TOTAL_COUNT = 'total_count';
 
-use App\Exceptions\PagingException;
-use App\Http\Traits\SimpleJsonSerialize;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
+use Saritasa\Exceptions\PagingException;
+use Saritasa\Transformers\Traits\SimpleJsonSerialize;
 
 /**
  * Paging Data - information about page size, current page, number of total pages and items count
