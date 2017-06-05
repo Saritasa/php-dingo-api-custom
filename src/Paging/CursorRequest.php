@@ -1,6 +1,6 @@
 <?php
 
-namespace Saritasa\DingoApi;
+namespace Saritasa\DingoApi\Paging;
 
 use Saritasa\Exceptions\PagingException;
 use Illuminate\Contracts\Support\Arrayable;

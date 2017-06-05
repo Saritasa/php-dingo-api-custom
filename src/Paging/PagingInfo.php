@@ -1,6 +1,6 @@
 <?php
 
-namespace Saritasa\DingoApi;
+namespace Saritasa\DingoApi\Paging;
 
 const PAGE = 'page';
 const PAGE_SIZE = 'per_page';

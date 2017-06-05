@@ -1,6 +1,6 @@
 <?php
 
-namespace Saritasa\DingoApi;
+namespace Saritasa\DingoApi\Paging;
 
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Collection;
