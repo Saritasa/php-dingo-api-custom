@@ -34,7 +34,7 @@ class CursorResult extends Cursor implements Arrayable
         $count = $items->count();
 
         if ($next == null && is_int($current) && $count >= $cursorRequest->pageSize) {
-            $next = $this->getKeyOrNull($items->last()) + 1;
+            $next = $this->getKeyOrNull($items->last());
         }
         if ($prev == null && is_int($current)) {
             $prev = $current - $cursorRequest->pageSize;
