@@ -2,13 +2,13 @@
 
 namespace Saritasa\DingoApi\Patches;
 
-use App\Models\Support\CursorResult;
 use Dingo\Api\Http\Request;
 use Dingo\Api\Transformer\Adapter\Fractal;
 use Dingo\Api\Transformer\Binding;
 use Illuminate\Contracts\Pagination\Paginator as IlluminatePaginator;
 use League\Fractal\Manager as FractalManager;
 use League\Fractal\TransformerAbstract;
+use Saritasa\DingoApi\Paging\CursorResult;
 
 /**
  * Same as Default Dingo\Api adapter, but uses custom serializer,

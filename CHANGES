@@ -1,3 +1,7 @@
+1.0.5
+-----
+Fix namespace in DingoApiFractalAdapter
+
 1.0.4
 -----
 Weeker typing requiredments for paging
