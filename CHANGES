@@ -1,3 +1,7 @@
+1.0.7
+-----
+Try parse cursor value as int, if possible
+
 1.0.6
 -----
 Improved cursor pagination

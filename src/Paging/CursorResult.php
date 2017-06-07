@@ -3,7 +3,6 @@
 namespace Saritasa\DingoApi\Paging;
 
 use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use League\Fractal\Pagination\Cursor;
 
@@ -24,8 +23,8 @@ class CursorResult extends Cursor implements Arrayable
      *
      * @param CursorRequest $cursorRequest - requested pagination parameters
      * @param Collection $items - records for selected page
-     * @param mixed $prev ID of first record, that should be shown on previous page
-     * @param mixed $next ID of first record, that should be shown on next page. If not passed, last record ID.
+     * @param mixed $prev Cursor value for previous page
+     * @param mixed $next Cursor value for next page
      * @param integer $count - number of records on current page
      */
     function __construct(CursorRequest $cursorRequest, Collection $items, $prev = null, $next = null, $count = null)
@@ -42,15 +41,6 @@ class CursorResult extends Cursor implements Arrayable
     public function getItems(): Collection
     {
         return $this->items;
-    }
-
-    protected function getKeyOrNull($model)
-    {
-        if ($model != null && $model instanceof Model)
-        {
-            return $model->getKey();
-        }
-        return null;
     }
 
     /**

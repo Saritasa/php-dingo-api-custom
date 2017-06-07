@@ -29,7 +29,13 @@ class CursorRequest implements Arrayable
     {
         $this->pageSize = config('api.defaultLimit');
         if ($input) {
-            $this->current = isset($input[static::CURRENT]) ? $input[static::CURRENT] : 0;
+            if (isset($input[static::CURRENT])) {
+                $this->current = ctype_digit($input[static::CURRENT])
+                    ? (int)$input[static::CURRENT]
+                    : $input[static::CURRENT];
+            } else {
+                $this->current = 0;
+            }
             if ($input[static::PAGE_SIZE]) {
                 $this->pageSize = $input[static::PAGE_SIZE];
             }
