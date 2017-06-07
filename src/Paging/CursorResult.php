@@ -25,25 +25,12 @@ class CursorResult extends Cursor implements Arrayable
      * @param CursorRequest $cursorRequest - requested pagination parameters
      * @param Collection $items - records for selected page
      * @param mixed $prev ID of first record, that should be shown on previous page
-     * @param mixed $next ID of first record, that should be shown on next page. If not passed, last record ID + 1.
+     * @param mixed $next ID of first record, that should be shown on next page. If not passed, last record ID.
      * @param integer $count - number of records on current page
      */
     function __construct(CursorRequest $cursorRequest, Collection $items, $prev = null, $next = null, $count = null)
     {
-        $current = $cursorRequest->current ?: $this->getKeyOrNull($items->first());
-        $count = $items->count();
-
-        if ($next == null && is_int($current) && $count >= $cursorRequest->pageSize) {
-            $next = $this->getKeyOrNull($items->last());
-        }
-        if ($prev == null && is_int($current)) {
-            $prev = $current - $cursorRequest->pageSize;
-            if ($prev < 0) {
-                $prev = null;
-            }
-        }
-
-        parent::__construct($current, $prev, $next, $count);
+        parent::__construct($cursorRequest->current, $prev, $next, $count);
         $this->items = $items;
     }
 
@@ -57,7 +44,7 @@ class CursorResult extends Cursor implements Arrayable
         return $this->items;
     }
 
-    private function getKeyOrNull($model)
+    protected function getKeyOrNull($model)
     {
         if ($model != null && $model instanceof Model)
         {
