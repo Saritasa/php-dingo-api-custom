@@ -1,3 +1,7 @@
+1.0.8
+-----
+Fixes and improvements for CursorResultAuto
+
 1.0.7
 -----
 Try parse cursor value as int, if possible
