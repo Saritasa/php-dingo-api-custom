@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
 use Saritasa\DingoApi\Exceptions\ValidationException as CustomValidationException;
+use Saritasa\Exceptions\PermissionsException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
@@ -35,11 +36,14 @@ class ApiExceptionHandler extends DingoApiHandler
      */
     private function registerCustomHandlers()
     {
+        API::error(function (UnauthorizedHttpException $e) {
+            return $this->handleUnauthorized($e);
+        });
         API::error(function (AuthorizationException $e) {
             return $this->handleAuthorizationError($e);
         });
-        API::error(function (UnauthorizedHttpException $e) {
-            return $this->handleUnauthorized($e);
+        Api::error(function (PermissionsException $e) {
+            return $this->handleAuthorizationError($e);
         });
         API::error(function (ValidationException $e) {
             return $this->handleValidation($e);
@@ -53,10 +57,10 @@ class ApiExceptionHandler extends DingoApiHandler
      * Security gateway throws AuthorizationException without HTTP code set.
      * Render AccessDeniedHttpException instead to produce 403 HTTP code instead of 500
      *
-     * @param AuthorizationException $e
+     * @param \Exception $e
      * @return Response
      */
-    public function handleAuthorizationError(AuthorizationException $e)
+    public function handleAuthorizationError(\Exception $e)
     {
         $e = new AccessDeniedHttpException($e->getMessage(), $e);
         return $this->handle($e);
