@@ -39,5 +39,4 @@ Fix Dingo/Api service provider registration
 
 1.0.0
 -----
-
-- Initial version: Directives @activeIfRoute, @selectedIf
+Initial version: Custom patches for Dingo API and error handler
