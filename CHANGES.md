@@ -1,3 +1,5 @@
+# Changes History
+
 1.0.9
 -----
 Proper handling for Saritasa\Exceptions\PermissionsException to produce 403 error

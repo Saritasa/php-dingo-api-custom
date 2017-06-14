@@ -2,12 +2,12 @@
     "name": "saritasa/dingo-api-custom",
     "type": "library",
     "description": "Saritasa customizations for Dingo/Api library",
-    "keywords": ["laravel", "blade"],
+    "keywords": ["laravel", "api", "dingo", "restful"],
     "license": "MIT",
     "authors": [
         {
             "name": "Sergey Populov",
-            "email": "sergey@gmail.com"
+            "email": "sergey@saritasa.com"
         }
     ],
     "require": {

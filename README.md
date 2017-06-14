@@ -18,7 +18,7 @@ Add the BladeDirectivesServiceProvider service provider ``config/app.php``:
 ```php
 'providers' => array(
     // ...
-    Saritasa\Laravel\BladeDirectivesServiceProvider::class,
+    Saritasa\DingoApi\SaritasaDingoApiServiceProvider::class,
 )
 ```
 
@@ -50,10 +50,13 @@ Output word 'selected' if passed expression evaluates to true
 
 1. Create fork
 2. Checkout fork
-3. Develop locally as usual
-4. When ready, create pull request
+3. Develop locally as usual. **Code must follow [PSR-1](http://www.php-fig.org/psr/psr-1/), [PSR-2](http://www.php-fig.org/psr/psr-2/)**
+4. Update [README.md](README.md) to describe new or changed functionality. Add changes description to [CHANGES.md](CHANGES.md) file.
+5. When ready, create pull request
 
 ## Resources
 
-* [Bug Tracker](http://github.com/saritasa/php-blade-directives/issues)
-* [Code](http://github.com/saritasa/php-blade-directives)
+* [Bug Tracker](http://github.com/saritasa/php-dingo-api-custom/issues)
+* [Code](http://github.com/saritasa/php-dingo-api-custom)
+* [Changes History](CHANGES.md)
+* [Authors](http://github.com/saritasa/php-dingo-api-custom/contributors)
