@@ -10,6 +10,9 @@ use Illuminate\Support\Collection;
  */
 class CursorResultAuto extends CursorResult
 {
+    // Row number column name for cursor pagination by query with custom sorting.
+    const ROW_NUM_COLUMN = 'query_row_number';
+
     /**
      * Cursor result, that tries to automatically detect next, previous cursor values
      *
@@ -43,12 +46,12 @@ class CursorResultAuto extends CursorResult
     }
 
     /**
-     * Try to get model key
+     * Try to get model row number or key. Return row number column if exists.
      */
     protected function getKeyOrNull($model)
     {
         if ($model != null && $model instanceof Model) {
-            return $model->getKey();
+            return $model->{self::ROW_NUM_COLUMN} ?: $model->getKey();
         }
         return null;
     }
@@ -63,7 +66,7 @@ class CursorResultAuto extends CursorResult
      */
     protected function isIntegerKey($current, $model): bool {
         if ($model != null && $model instanceof Model) {
-            return $model->getKeyType() == 'int';
+            return !empty($model->{self::ROW_NUM_COLUMN}) || $model->getKeyType() == 'int';
         } else {
             if ($current != null && is_numeric($current) || ctype_digit($current)) {
                 return true;
