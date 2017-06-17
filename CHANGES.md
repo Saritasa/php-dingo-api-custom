@@ -1,5 +1,9 @@
 # Changes History
 
+1.0.11
+------
+Add CursorQueryBuilder for arbitrary queries
+
 1.0.10
 -----
 Improved cursor pagination to search row number in result set for paginate custom ordered query
