@@ -1,5 +1,9 @@
 # Changes History
 
+1.0.13
+------
+Fix cursor pagination for models, loaded with relations
+
 1.0.12
 ------
 Do not substitute key in CursorQueryBuilder

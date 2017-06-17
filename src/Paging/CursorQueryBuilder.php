@@ -81,8 +81,11 @@ class CursorQueryBuilder
         $fakeModel = new $this->model;
         $fakeModel->setTable(DB::raw("(" . $wrappedQuery->toSql() . ") AS " . $this->model->getTable()));
 
-        /** @var QueryBuilder $modelQuery */
+        /** @var EloquentBuilder $modelQuery */
         $modelQuery = $fakeModel->newQueryWithoutScopes();
+        $builder = $this->getBaseQuery($modelQuery);
+        $builder->columns = null; // We always select everything from subquery
+        $modelQuery->setQuery($builder->cloneWithoutBindings(['select', 'where'])); // remove default bindings
         $modelQuery->mergeBindings($wrappedQuery);
         return $modelQuery;
     }
