@@ -1,5 +1,10 @@
 # Changes History
 
+1.0.12
+------
+Do not substitute key in CursorQueryBuilder
+Handle Illuminate\Database\Query\Builder correctly
+
 1.0.11
 ------
 Add CursorQueryBuilder for arbitrary queries

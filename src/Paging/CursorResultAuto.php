@@ -50,10 +50,10 @@ class CursorResultAuto extends CursorResult
      */
     protected function getKeyOrNull($model)
     {
-        if ($model != null && $model instanceof Model) {
-            return $model->{self::ROW_NUM_COLUMN} ?: $model->getKey();
+        if ($model == null) {
+            return null;
         }
-        return null;
+        return $model->{self::ROW_NUM_COLUMN} ?: ($model instanceof Model ? $model->getKey() : null);
     }
 
     /**

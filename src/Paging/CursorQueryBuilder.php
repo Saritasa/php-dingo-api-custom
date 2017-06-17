@@ -13,7 +13,7 @@ class CursorQueryBuilder
     protected $model;
     /** @var EloquentBuilder|QueryBuilder $query */
     protected $originalQuery;
-    protected $idKey;
+    protected $idKey = CursorResultAuto::ROW_NUM_COLUMN;
 
     /**
      * Wrap the query to support cursor pagination with custom sort.
@@ -23,9 +23,13 @@ class CursorQueryBuilder
     function __construct(CursorRequest $cursorRequest, $query)
     {
         $this->cursorRequest = $cursorRequest;
-        $this->model = $query->getModel();
+        $this->model = $query instanceof EloquentBuilder
+            ? $query->getModel()
+            : new class extends Model {
+                protected $table = 'fake_model_table';
+                protected $primaryKey = CursorResultAuto::ROW_NUM_COLUMN;
+            };
         $this->originalQuery = $this->getBaseQuery($query);
-        $this->idKey = CursorResultAuto::ROW_NUM_COLUMN;
     }
 
     /**
@@ -60,7 +64,7 @@ class CursorQueryBuilder
     protected function wrapWithRowCounter($originalQuery)
     {
         $tmpQuery = $originalQuery->cloneWithoutBindings(['where'])
-            ->crossJoin(DB::raw('(SELECT @row := 1) as r'));
+            ->crossJoin(DB::raw('(SELECT @row := 0) as row_id_fake_table'));
 
         return DB::table(
             DB::raw("(SELECT *, (@row := @row+1) as {$this->idKey} FROM (" . $tmpQuery->toSql() . ") as t1) as t2")
@@ -75,17 +79,10 @@ class CursorQueryBuilder
     {
         /** @var Model $fakeModel */
         $fakeModel = new $this->model;
-        $fakeModel->setKeyName($this->idKey);
         $fakeModel->setTable(DB::raw("(" . $wrappedQuery->toSql() . ") AS " . $this->model->getTable()));
 
         /** @var QueryBuilder $modelQuery */
-        $modelQuery = $fakeModel->newQuery();
-
-        $baseQuery = $this->getBaseQuery($modelQuery);
-        // Remove default wheres - they are already inside wrapped query
-        $baseQuery->wheres = [];
-        $baseQuery->bindings = [];
-
+        $modelQuery = $fakeModel->newQueryWithoutScopes();
         $modelQuery->mergeBindings($wrappedQuery);
         return $modelQuery;
     }
