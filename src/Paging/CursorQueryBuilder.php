@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Support\Facades\DB;
+use Saritasa\Database\Eloquent\Utils\Query;
 
 class CursorQueryBuilder
 {
@@ -29,7 +30,7 @@ class CursorQueryBuilder
                 protected $table = 'fake_model_table';
                 protected $primaryKey = CursorResultAuto::ROW_NUM_COLUMN;
             };
-        $this->originalQuery = $this->getBaseQuery($query);
+        $this->originalQuery = Query::getBaseQuery($query);
     }
 
     /**
@@ -83,19 +84,10 @@ class CursorQueryBuilder
 
         /** @var EloquentBuilder $modelQuery */
         $modelQuery = $fakeModel->newQueryWithoutScopes();
-        $builder = $this->getBaseQuery($modelQuery);
+        $builder = Query::getBaseQuery($modelQuery);
         $builder->columns = null; // We always select everything from subquery
         $modelQuery->setQuery($builder->cloneWithoutBindings(['select', 'where'])); // remove default bindings
         $modelQuery->mergeBindings($wrappedQuery);
         return $modelQuery;
-    }
-
-    /**
-     * @param EloquentBuilder|QueryBuilder $query $query
-     * @return QueryBuilder
-     */
-
-    protected function getBaseQuery($query) {
-        return ($query instanceof QueryBuilder) ? $query : $query->getQuery();
     }
 }
