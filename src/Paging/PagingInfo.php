@@ -36,13 +36,13 @@ class PagingInfo implements Arrayable, Jsonable, \JsonSerializable
     {
         $this->pageSize = config('api.defaultLimit');
         if ($input) {
-            if ($input[PAGE]) {
+            if (isset($input[PAGE])) {
                 $this->setPage($input[PAGE]);
             }
-            if ($input[PAGE_SIZE]) {
+            if (isset($input[PAGE_SIZE])) {
                 $this->setPageSize($input[PAGE_SIZE]);
             }
-            if ($input[TOTAL_COUNT]) {
+            if (isset($input[TOTAL_COUNT])) {
                 $this->setTotalCount($input[TOTAL_COUNT]);
             }
         }

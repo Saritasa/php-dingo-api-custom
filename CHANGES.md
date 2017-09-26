@@ -1,5 +1,9 @@
 # Changes History
 
+1.0.14
+------
+PagingInfo checks existence of keys in input array
+
 1.0.13
 ------
 Fix cursor pagination for models, loaded with relations
@@ -14,7 +18,7 @@ Handle Illuminate\Database\Query\Builder correctly
 Add CursorQueryBuilder for arbitrary queries
 
 1.0.10
------
+------
 Improved cursor pagination to search row number in result set for paginate custom ordered query
 
 1.0.9
