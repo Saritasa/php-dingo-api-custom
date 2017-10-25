@@ -19,8 +19,8 @@ class DingoApiFractalAdapter extends Fractal
     public function __construct(FractalManager $fractal,
                                 $includeKey = 'include',
                                 $includeSeparator = ',',
-                                $eagerLoading = true)
-    {
+                                $eagerLoading = true
+    ) {
         $fractal->setSerializer(new CustomArraySerializer());
         parent::__construct($fractal, $includeKey, $includeSeparator, $eagerLoading);
     }
@@ -41,10 +41,13 @@ class DingoApiFractalAdapter extends Fractal
         $this->parseFractalIncludes($request);
 
         if ($response instanceof CursorResult) {
-            $resource = $this->createResource($response->getItems(), $transformer, $parameters = $binding->getParameters());
+            $resource = $this->createResource(
+                $response->getItems(),
+                $transformer,
+                $parameters = $binding->getParameters()
+            );
             $resource->setCursor($response);
-        }
-        else {
+        } else {
             $resource = $this->createResource($response, $transformer, $parameters = $binding->getParameters());
         }
         // If the response is a paginator then we'll create a new paginator
