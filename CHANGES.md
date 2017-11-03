@@ -1,5 +1,9 @@
 # Changes History
 
+1.0.15
+------
+Add apiRoute helper method to simplify retrieving api routes
+
 1.0.14
 ------
 PagingInfo checks existence of keys in input array
@@ -43,7 +47,7 @@ Fix namespace in DingoApiFractalAdapter
 
 1.0.4
 -----
-Weeker typing requiredments for paging
+Weaker typing requirements for paging
 Remove duplicates of BaseApiController
 
 1.0.3
