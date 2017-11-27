@@ -7,11 +7,12 @@ if (!function_exists('apiRoute')) {
      * @param  string $name Route name
      * @param  array $parameters Route parameters
      * @param  bool $absolute If TRUE returns absolute URL
+     *
      * @return string
      */
     function apiRoute($name, array $parameters = [], $absolute = true)
     {
-        $scheme = Saritasa\DingoApi\Utils\Request::isSecure(request()) ? 'https' : 'http';
+        $scheme = Saritasa\Middleware\RequestChecker::isSecure(request()) ? 'https' : 'http';
         $router = version(config('api.version'));
 
         $isOldLaravel = version_compare(app()->version(), '5.4.0', '<');
@@ -20,6 +21,7 @@ if (!function_exists('apiRoute')) {
         } else {
             $router->forceScheme($scheme);
         }
+
         return $router->route($name, $parameters, $absolute);
     }
 }
