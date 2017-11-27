@@ -12,7 +12,7 @@ if (!function_exists('apiRoute')) {
      */
     function apiRoute($name, array $parameters = [], $absolute = true)
     {
-        $scheme = Saritasa\Middleware\RequestChecker::isSecure(request()) ? 'https' : 'http';
+        $scheme = \Saritasa\Middleware\RequestChecker::isSecure(request()) ? 'https' : 'http';
         $router = version(config('api.version'));
 
         $isOldLaravel = version_compare(app()->version(), '5.4.0', '<');
