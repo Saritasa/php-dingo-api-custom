@@ -64,7 +64,8 @@ class CursorResultAuto extends CursorResult
      * @param mixed $model one of items or null
      * @return bool
      */
-    protected function isIntegerKey($current, $model): bool {
+    protected function isIntegerKey($current, $model): bool
+    {
         if ($model != null && $model instanceof Model) {
             return !empty($model->{self::ROW_NUM_COLUMN}) || $model->getKeyType() == 'int';
         } else {

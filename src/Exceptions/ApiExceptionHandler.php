@@ -104,8 +104,7 @@ class ApiExceptionHandler extends DingoApiHandler
      */
     private function handleUnauthorized(UnauthorizedHttpException $e)
     {
-        if ($e->getPrevious() instanceof TokenExpiredException)
-        {
+        if ($e->getPrevious() instanceof TokenExpiredException) {
             $e = new UnauthorizedHttpException('JWTAuth', $e->getMessage(), $e, 498);
         }
         return $this->handle($e);

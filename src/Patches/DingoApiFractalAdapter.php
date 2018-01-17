@@ -16,10 +16,11 @@ use Saritasa\DingoApi\Paging\CursorResult;
  */
 class DingoApiFractalAdapter extends Fractal
 {
-    public function __construct(FractalManager $fractal,
-                                $includeKey = 'include',
-                                $includeSeparator = ',',
-                                $eagerLoading = true
+    public function __construct(
+        FractalManager $fractal,
+        $includeKey = 'include',
+        $includeSeparator = ',',
+        $eagerLoading = true
     ) {
         $fractal->setSerializer(new CustomArraySerializer());
         parent::__construct($fractal, $includeKey, $includeSeparator, $eagerLoading);

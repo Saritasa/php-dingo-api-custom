@@ -107,7 +107,8 @@ class PagingInfo implements Arrayable, Jsonable, \JsonSerializable
         $this->totalPages = (int)ceil($this->totalCount / $this->pageSize);
     }
 
-    public function getOffset() {
+    public function getOffset()
+    {
         $pageZeroIndexed = min($this->page - 1, 0);
         $offset = $this->pageSize * $pageZeroIndexed;
         if ($offset > $this->totalCount) {

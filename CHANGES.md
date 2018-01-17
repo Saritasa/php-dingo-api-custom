@@ -1,5 +1,9 @@
 # Changes History
 
+1.0.15
+------
+Enable Laravel's package discovery https://laravel.com/docs/5.5/packages#package-discovery
+
 1.0.14
 ------
 PagingInfo checks existence of keys in input array
