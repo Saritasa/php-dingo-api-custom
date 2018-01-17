@@ -22,7 +22,7 @@ class CursorResultAuto extends CursorResult
      *        (try to detect automatically, based on current cursor value and page size if null)
      * @param mixed $next Cursor value for next page (try to detect automatically as last item ID, if null)
      */
-    function __construct(CursorRequest $cursorRequest, Collection $items, $prev = null, $next = null)
+    public function __construct(CursorRequest $cursorRequest, Collection $items, $prev = null, $next = null)
     {
         $current = $cursorRequest->current ?: $this->getKeyOrNull($items->first());
         $count = $items->count();

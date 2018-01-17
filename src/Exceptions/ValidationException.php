@@ -28,9 +28,15 @@ class ValidationException extends HttpException implements MessageBagErrors
      */
     private $errors;
 
-    public function __construct(MessageBagContract $errors, $message = null, \Exception $previous = null, array $headers = array(), $code = 0)
-    {
-        parent::__construct(Response::HTTP_BAD_REQUEST, $message ?? trans('errors.validation_failed'), $previous, $headers, $code);
+    public function __construct(
+        MessageBagContract $errors,
+        $message = null,
+        \Exception $previous = null,
+        array $headers = array(),
+        $code = 0
+    ) {
+        $message = $message ?? trans('errors.validation_failed');
+        parent::__construct(Response::HTTP_BAD_REQUEST, $message, $previous, $headers, $code);
 
         $this->errors = $this->transformErrors($errors);
     }

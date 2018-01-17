@@ -21,7 +21,7 @@ class CursorQueryBuilder
      * @param CursorRequest $cursorRequest Requested cursor parameters
      * @param EloquentBuilder|QueryBuilder $query
      */
-    function __construct(CursorRequest $cursorRequest, $query)
+    public function __construct(CursorRequest $cursorRequest, $query)
     {
         $this->cursorRequest = $cursorRequest;
         $this->model = $query instanceof EloquentBuilder
