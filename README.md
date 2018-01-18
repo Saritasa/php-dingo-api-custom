@@ -4,7 +4,7 @@
 
 Custom settings and extensions for Dingo/Api package
 
-See https://laravel.com/docs/blade
+See https://github.com/dingo/api
 
 
 ## Laravel 5.x
@@ -26,29 +26,17 @@ add the BladeDirectivesServiceProvider service provider in ``config/app.php``:
 )
 ```
 
-## Available directives
+## Customizations
 
-### @activeIfRoute(routeName)
-Output word 'active' if URL, requested by user, matches provided route name
+Registers **CustomArraySerializer** instead of **ArraySerializer**:
 
-**Example**:
-```
-<li class="@activeIfRoute('user.settings')">
-    <a href="{{ route('user.settings') }}">Settings</a>
-</li>
-```
+* Does not add 'meta' key for metadata, all metadata output to root.
 
-### @selectedIf(expression)
-Output word 'selected' if passed expression evaluates to true
+Registers custom ApiExceptionHandler with specific handling of
+exceptions, defined in [saritasa/php-common](https://github.com/Saritasa/php-common) package
 
-**Example**:
-```
-<select>
-    @foreach($users as $user)
-        <option value='{{ $user->id }}' @selectedIf($user->id == $currentUserId)>{{ $user->name }}</option>
-    @endforeach
-</select>
-```
+Changes format of JSON output for handled validation exceptions.
+
 
 ## Contributing
 
