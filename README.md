@@ -1,5 +1,7 @@
 # Dingo API customization
 
+[![Build Status](https://travis-ci.org/Saritasa/php-dingo-api-custom.svg?branch=master)](https://travis-ci.org/Saritasa/php-dingo-api-custom)
+
 Custom settings and extensions for Dingo/Api package
 
 See https://laravel.com/docs/blade
