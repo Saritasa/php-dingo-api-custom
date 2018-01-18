@@ -69,7 +69,7 @@ class CursorQueryBuilder
     /**
      * Add statement, which will include number of rows in original data set into query, which returns one page
      *
-     * @param EloquentBuilder|QueryBuilder $originalQuery
+     * @param EloquentBuilder|QueryBuilder $originalQuery Query, that retuns original data set to paginate
      * @return QueryBuilder
      */
     protected function wrapWithRowCounter($originalQuery)
