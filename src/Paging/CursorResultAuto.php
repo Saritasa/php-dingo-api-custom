@@ -62,7 +62,7 @@ class CursorResultAuto extends CursorResult
      *
      * @param mixed $current Current curor value
      * @param mixed $model one of items or null
-     * @return bool
+     * @return boolean
      */
     protected function isIntegerKey($current, $model): bool
     {

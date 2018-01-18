@@ -14,6 +14,8 @@ use League\Fractal\Pagination\Cursor;
 class CursorResult extends Cursor implements Arrayable
 {
     /**
+     * Data items portion, contained in cursor
+     *
      * @var Collection
      */
     private $items;
@@ -39,7 +41,7 @@ class CursorResult extends Cursor implements Arrayable
     }
 
     /**
-     *
+     * Data items portion, contained in cursor
      *
      * @return Collection
      */

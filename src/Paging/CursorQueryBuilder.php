@@ -12,14 +12,20 @@ class CursorQueryBuilder
 {
     protected $cursorRequest;
     protected $model;
-    /** @var EloquentBuilder|QueryBuilder $query */
+
+    /**
+     * Query builder, that returns full set of data to be paginated
+     *
+     * @var EloquentBuilder|QueryBuilder $query
+     */
     protected $originalQuery;
     protected $idKey = CursorResultAuto::ROW_NUM_COLUMN;
 
     /**
      * Wrap the query to support cursor pagination with custom sort.
+     *
      * @param CursorRequest $cursorRequest Requested cursor parameters
-     * @param EloquentBuilder|QueryBuilder $query
+     * @param EloquentBuilder|QueryBuilder $query Query builder, that returns full set of data to be paginated
      */
     public function __construct(CursorRequest $cursorRequest, $query)
     {
@@ -46,6 +52,8 @@ class CursorQueryBuilder
     }
 
     /**
+     * Build a query, which will return only one page from original data set, matching cursor parameters
+     *
      * @return EloquentBuilder|QueryBuilder
      */
     public function buildQuery()
@@ -59,7 +67,9 @@ class CursorQueryBuilder
     }
 
     /**
-     * @param EloquentBuilder|QueryBuilder $query
+     * Add statement, which will include number of rows in original data set into query, which returns one page
+     *
+     * @param EloquentBuilder|QueryBuilder $originalQuery
      * @return QueryBuilder
      */
     protected function wrapWithRowCounter($originalQuery)
@@ -73,16 +83,26 @@ class CursorQueryBuilder
     }
 
     /**
-     * @param QueryBuilder $wrappedQuery
+     * Buld query around model clone without scopes, that may affect query result.
+     *
+     * @param QueryBuilder $wrappedQuery Query to actually perform
      * @return EloquentBuilder|QueryBuilder
      */
     protected function getFakeModelQuery($wrappedQuery)
     {
-        /** @var Model $fakeModel */
+        /**
+         * Clone of original Eloquent model, which we can modify to apply some hacks to build specific query
+         *
+         * @var Model $fakeModel
+         */
         $fakeModel = new $this->model;
         $fakeModel->setTable(DB::raw("(" . $wrappedQuery->toSql() . ") AS " . $this->model->getTable()));
 
-        /** @var EloquentBuilder $modelQuery */
+        /**
+         * Query builder
+         *
+         * @var EloquentBuilder $modelQuery
+         */
         $modelQuery = $fakeModel->newQueryWithoutScopes();
         $builder = Query::getBaseQuery($modelQuery);
         $builder->columns = null; // We always select everything from subquery

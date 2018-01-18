@@ -31,10 +31,10 @@ class DingoApiFractalAdapter extends Fractal
      * Fractal Adapter is not designed to override partially (no way to call parent::transform gracefully),
      * so this is a modified copy of original transform() method
      *
-     * @param mixed $response
-     * @param TransformerAbstract $transformer
-     * @param Binding $binding
-     * @param Request $request
+     * @param mixed $response HTTP Response to be returned
+     * @param TransformerAbstract $transformer Data transformer, which should be applied to model or each model in list
+     * @param Binding $binding Bindings of models types to transformers
+     * @param Request $request HTTP Request beeing processed
      * @return array
      */
     public function transform($response, $transformer, Binding $binding, Request $request)
