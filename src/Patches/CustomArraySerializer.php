@@ -20,8 +20,8 @@ class CustomArraySerializer extends DingoArraySerializer
     /**
      * Serialize a collection.
      *
-     * @param string $resourceKey
-     * @param array  $data
+     * @param string $resourceKey Key of hashmap, under which this data will appear in response
+     * @param array  $data Data to include in response
      *
      * @return array
      */

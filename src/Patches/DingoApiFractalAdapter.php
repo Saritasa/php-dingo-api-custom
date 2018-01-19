@@ -16,11 +16,12 @@ use Saritasa\DingoApi\Paging\CursorResult;
  */
 class DingoApiFractalAdapter extends Fractal
 {
-    public function __construct(FractalManager $fractal,
-                                $includeKey = 'include',
-                                $includeSeparator = ',',
-                                $eagerLoading = true)
-    {
+    public function __construct(
+        FractalManager $fractal,
+        $includeKey = 'include',
+        $includeSeparator = ',',
+        $eagerLoading = true
+    ) {
         $fractal->setSerializer(new CustomArraySerializer());
         parent::__construct($fractal, $includeKey, $includeSeparator, $eagerLoading);
     }
@@ -30,10 +31,10 @@ class DingoApiFractalAdapter extends Fractal
      * Fractal Adapter is not designed to override partially (no way to call parent::transform gracefully),
      * so this is a modified copy of original transform() method
      *
-     * @param mixed $response
-     * @param TransformerAbstract $transformer
-     * @param Binding $binding
-     * @param Request $request
+     * @param mixed $response HTTP Response to be returned
+     * @param TransformerAbstract $transformer Data transformer, which should be applied to model or each model in list
+     * @param Binding $binding Bindings of models types to transformers
+     * @param Request $request HTTP Request beeing processed
      * @return array
      */
     public function transform($response, $transformer, Binding $binding, Request $request)
@@ -41,10 +42,13 @@ class DingoApiFractalAdapter extends Fractal
         $this->parseFractalIncludes($request);
 
         if ($response instanceof CursorResult) {
-            $resource = $this->createResource($response->getItems(), $transformer, $parameters = $binding->getParameters());
+            $resource = $this->createResource(
+                $response->getItems(),
+                $transformer,
+                $parameters = $binding->getParameters()
+            );
             $resource->setCursor($response);
-        }
-        else {
+        } else {
             $resource = $this->createResource($response, $transformer, $parameters = $binding->getParameters());
         }
         // If the response is a paginator then we'll create a new paginator

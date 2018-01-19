@@ -20,7 +20,8 @@ class ApiExceptionHandler extends DingoApiHandler
 {
     /**
      * ApiHandler constructor.
-     * @param IlluminateExceptionHandler $parentHandler
+     *
+     * @param IlluminateExceptionHandler $parentHandler Laravel exception handler
      */
     public function __construct(IlluminateExceptionHandler $parentHandler)
     {
@@ -57,7 +58,7 @@ class ApiExceptionHandler extends DingoApiHandler
      * Security gateway throws AuthorizationException without HTTP code set.
      * Render AccessDeniedHttpException instead to produce 403 HTTP code instead of 500
      *
-     * @param \Exception $e
+     * @param \Exception $e Original exception to wrap and handle
      * @return Response
      */
     public function handleAuthorizationError(\Exception $e)
@@ -71,7 +72,7 @@ class ApiExceptionHandler extends DingoApiHandler
      * Dingo API does not handle default Laravel validation exception.
      * Wrap it into ValidationHttpException, processed properly
      *
-     * @param ValidationException $e
+     * @param ValidationException $e Original exception to wrap and handle
      * @return Response
      */
     public function handleValidation(ValidationException $e)
@@ -83,7 +84,7 @@ class ApiExceptionHandler extends DingoApiHandler
     /**
      * Replace model not found exception to guarantee 404 error instead of 500
      *
-     * @param ModelNotFoundException $e
+     * @param ModelNotFoundException $e Original exception to wrap and handle
      * @return Response
      */
     private function handleModelNotFound(ModelNotFoundException $e)
@@ -99,13 +100,12 @@ class ApiExceptionHandler extends DingoApiHandler
      * code = 498
      * in body response
      *
-     * @param UnauthorizedHttpException $e
+     * @param UnauthorizedHttpException $e Original exception to wrap and handle
      * @return Response
      */
     private function handleUnauthorized(UnauthorizedHttpException $e)
     {
-        if ($e->getPrevious() instanceof TokenExpiredException)
-        {
+        if ($e->getPrevious() instanceof TokenExpiredException) {
             $e = new UnauthorizedHttpException('JWTAuth', $e->getMessage(), $e, 498);
         }
         return $this->handle($e);

@@ -24,13 +24,21 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 class ValidationException extends HttpException implements MessageBagErrors
 {
     /**
+     * List of errors, that happened during validation
+     *
      * @var \Illuminate\Support\MessageBag
      */
     private $errors;
 
-    public function __construct(MessageBagContract $errors, $message = null, \Exception $previous = null, array $headers = array(), $code = 0)
-    {
-        parent::__construct(Response::HTTP_BAD_REQUEST, $message ?? trans('errors.validation_failed'), $previous, $headers, $code);
+    public function __construct(
+        MessageBagContract $errors,
+        $message = null,
+        \Exception $previous = null,
+        array $headers = [],
+        $code = 0
+    ) {
+        $message = $message ?? trans('errors.validation_failed');
+        parent::__construct(Response::HTTP_BAD_REQUEST, $message, $previous, $headers, $code);
 
         $this->errors = $this->transformErrors($errors);
     }
@@ -61,7 +69,7 @@ class ValidationException extends HttpException implements MessageBagErrors
     /**
      * Determine if message bag has any errors.
      *
-     * @return bool
+     * @return boolean
      */
     public function hasErrors()
     {

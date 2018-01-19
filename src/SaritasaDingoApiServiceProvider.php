@@ -31,7 +31,6 @@ class SaritasaDingoApiServiceProvider extends ServiceProvider
 
         $configPath = __DIR__ . '/../config/api.php';
         $this->mergeConfigFrom($configPath, 'api');
-
     }
 
     private function registerApiExceptionHandler()

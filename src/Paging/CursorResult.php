@@ -14,6 +14,8 @@ use League\Fractal\Pagination\Cursor;
 class CursorResult extends Cursor implements Arrayable
 {
     /**
+     * Data items portion, contained in cursor
+     *
      * @var Collection
      */
     private $items;
@@ -27,14 +29,19 @@ class CursorResult extends Cursor implements Arrayable
      * @param mixed $next Cursor value for next page
      * @param integer $count - number of records on current page
      */
-    function __construct(CursorRequest $cursorRequest, Collection $items, $prev = null, $next = null, $count = null)
-    {
+    public function __construct(
+        CursorRequest $cursorRequest,
+        Collection $items,
+        $prev = null,
+        $next = null,
+        $count = null
+    ) {
         parent::__construct($cursorRequest->current, $prev, $next, $count);
         $this->items = $items;
     }
 
     /**
-     *
+     * Data items portion, contained in cursor
      *
      * @return Collection
      */

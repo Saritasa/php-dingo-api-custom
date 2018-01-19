@@ -1,8 +1,10 @@
 # Dingo API customization
 
+[![Build Status](https://travis-ci.org/Saritasa/php-dingo-api-custom.svg?branch=master)](https://travis-ci.org/Saritasa/php-dingo-api-custom)
+
 Custom settings and extensions for Dingo/Api package
 
-See https://laravel.com/docs/blade
+See https://github.com/dingo/api
 
 
 ## Laravel 5.x
@@ -13,7 +15,9 @@ Install the ```saritasa/dingo-api-custom``` package:
 $ composer require saritasa/dingo-api-custom
 ```
 
-Add the BladeDirectivesServiceProvider service provider ``config/app.php``:
+If you use Laraval 5.4 or less,
+or 5.5+ with [package discovery](https://laravel.com/docs/5.5/packages#package-discovery) disabled,
+add the BladeDirectivesServiceProvider service provider in ``config/app.php``:
 
 ```php
 'providers' => array(
@@ -22,37 +26,26 @@ Add the BladeDirectivesServiceProvider service provider ``config/app.php``:
 )
 ```
 
-## Available directives
+## Customizations
 
-### @activeIfRoute(routeName)
-Output word 'active' if URL, requested by user, matches provided route name
+Registers **CustomArraySerializer** instead of **ArraySerializer**:
 
-**Example**:
-```
-<li class="@activeIfRoute('user.settings')">
-    <a href="{{ route('user.settings') }}">Settings</a>
-</li>
-```
+* Does not add 'meta' key for metadata, all metadata output to root.
 
-### @selectedIf(expression)
-Output word 'selected' if passed expression evaluates to true
+Registers custom ApiExceptionHandler with specific handling of
+exceptions, defined in [saritasa/php-common](https://github.com/Saritasa/php-common) package
 
-**Example**:
-```
-<select>
-    @foreach($users as $user)
-        <option value='{{ $user->id }}' @selectedIf($user->id == $currentUserId)>{{ $user->name }}</option>
-    @endforeach
-</select>
-```
+Changes format of JSON output for handled validation exceptions.
+
 
 ## Contributing
 
 1. Create fork
 2. Checkout fork
 3. Develop locally as usual. **Code must follow [PSR-1](http://www.php-fig.org/psr/psr-1/), [PSR-2](http://www.php-fig.org/psr/psr-2/)**
-4. Update [README.md](README.md) to describe new or changed functionality. Add changes description to [CHANGES.md](CHANGES.md) file.
-5. When ready, create pull request
+4. Run [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) to ensure, that code follows style guides
+5. Update [README.md](README.md) to describe new or changed functionality. Add changes description to [CHANGES.md](CHANGES.md) file.
+6. When ready, create pull request
 
 ## Resources
 

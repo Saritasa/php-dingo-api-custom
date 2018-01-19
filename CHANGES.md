@@ -6,7 +6,8 @@ Add apiRoute helper method to simplify retrieving api routes
 
 1.0.14
 ------
-PagingInfo checks existence of keys in input array
+* PagingInfo checks existence of keys in input array
+* Enable Laravel's package discovery https://laravel.com/docs/5.5/packages#package-discovery
 
 1.0.13
 ------
@@ -14,8 +15,8 @@ Fix cursor pagination for models, loaded with relations
 
 1.0.12
 ------
-Do not substitute key in CursorQueryBuilder
-Handle Illuminate\Database\Query\Builder correctly
+* Do not substitute key in CursorQueryBuilder
+* Handle Illuminate\Database\Query\Builder correctly
 
 1.0.11
 ------
@@ -47,8 +48,8 @@ Fix namespace in DingoApiFractalAdapter
 
 1.0.4
 -----
-Weaker typing requirements for paging
-Remove duplicates of BaseApiController
+* Weeker typing requiredments for paging
+* Remove duplicates of BaseApiController
 
 1.0.3
 -----
