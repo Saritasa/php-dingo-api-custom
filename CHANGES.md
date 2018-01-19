@@ -1,5 +1,9 @@
 # Changes History
 
+1.0.15
+------
+Add apiRoute helper method to simplify retrieving api routes
+
 1.0.14
 ------
 * PagingInfo checks existence of keys in input array

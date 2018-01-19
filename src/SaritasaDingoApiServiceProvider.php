@@ -27,6 +27,8 @@ class SaritasaDingoApiServiceProvider extends ServiceProvider
         $this->app->register(DingoApiServiceProvider::class);
         $this->registerApiExceptionHandler();
 
+        $this->registerRouterHelper();
+
         $configPath = __DIR__ . '/../config/api.php';
         $this->mergeConfigFrom($configPath, 'api');
     }
@@ -35,5 +37,10 @@ class SaritasaDingoApiServiceProvider extends ServiceProvider
     {
         $this->app->singleton('app.api.exception', ApiExceptionHandler::class);
         app('app.api.exception');
+    }
+
+    private function registerRouterHelper()
+    {
+        require_once __DIR__ . '/Helpers/router.php';
     }
 }
