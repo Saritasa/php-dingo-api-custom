@@ -1,5 +1,9 @@
 # Changes History
 
+2.0.0
+-----
+Switched to Dingo/Api 2.0. Use this version with Laravel 5.5+
+
 1.0.15
 ------
 Add apiRoute helper method to simplify retrieving api routes

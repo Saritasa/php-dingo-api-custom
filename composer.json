@@ -12,9 +12,9 @@
     ],
     "require": {
         "php": ">=7.0",
-        "dingo/api": "1.0.*@dev",
-        "illuminate/http": "^5.4",
-        "laravel/framework": "^5.4",
+        "dingo/api": "2.0.*@alpha",
+        "illuminate/http": "^5.5",
+        "laravel/framework": "^5.5",
         "saritasa/transformers": "^1.0"
     },
     "require-dev": {
