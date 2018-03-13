@@ -1,5 +1,10 @@
 # Changes History
 
+2.0.1
+-----
++ Resolve issue with CursorRequest initialisation
++ Add CursorRequest unit tests
+
 2.0.0
 -----
 Switched to Dingo/Api 2.0. Use this version with Laravel 5.5+
