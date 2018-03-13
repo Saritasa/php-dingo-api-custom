@@ -1,6 +1,7 @@
 # Dingo API customization
 
 [![Build Status](https://travis-ci.org/Saritasa/php-dingo-api-custom.svg?branch=master)](https://travis-ci.org/Saritasa/php-dingo-api-custom)
+[![codecov](https://codecov.io/gh/Saritasa/php-dingo-api-custom/branch/master/graph/badge.svg)](https://codecov.io/gh/Saritasa/php-dingo-api-custom)
 [![Release](https://img.shields.io/github/release/saritasa/php-dingo-api-custom.svg)](https://github.com/Saritasa/php-dingo-api-custom/releases)
 [![PHPv](https://img.shields.io/packagist/php-v/saritasa/dingo-api-custom.svg)](http://www.php.net)
 [![Downloads](https://img.shields.io/packagist/dt/saritasa/dingo-api-custom.svg)](https://packagist.org/packages/saritasa/dingo-api-custom)
