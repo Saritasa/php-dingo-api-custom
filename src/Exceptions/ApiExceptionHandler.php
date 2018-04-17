@@ -16,10 +16,13 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 
+/**
+ * Custom exception handler which wrap exception into response as http exceptions.
+ */
 class ApiExceptionHandler extends DingoApiHandler
 {
     /**
-     * ApiHandler constructor.
+     * Custom exception handler which wrap exception into response as http exceptions.
      *
      * @param IlluminateExceptionHandler $parentHandler Laravel exception handler
      */
@@ -34,8 +37,10 @@ class ApiExceptionHandler extends DingoApiHandler
      *
      * We can't pass class method as callback directly,
      * so we wrap them into closures.
+     *
+     * @return void
      */
-    private function registerCustomHandlers()
+    private function registerCustomHandlers(): void
     {
         API::error(function (UnauthorizedHttpException $e) {
             return $this->handleUnauthorized($e);
@@ -61,7 +66,7 @@ class ApiExceptionHandler extends DingoApiHandler
      * @param \Exception $e Original exception to wrap and handle
      * @return Response
      */
-    public function handleAuthorizationError(\Exception $e)
+    public function handleAuthorizationError(\Exception $e): Response
     {
         $e = new AccessDeniedHttpException($e->getMessage(), $e);
         return $this->handle($e);
@@ -75,7 +80,7 @@ class ApiExceptionHandler extends DingoApiHandler
      * @param ValidationException $e Original exception to wrap and handle
      * @return Response
      */
-    public function handleValidation(ValidationException $e)
+    public function handleValidation(ValidationException $e): Response
     {
         $e = new CustomValidationException($e->validator->getMessageBag(), $e->getMessage(), $e, [], $e->getCode());
         return $this->handle($e);
@@ -87,7 +92,7 @@ class ApiExceptionHandler extends DingoApiHandler
      * @param ModelNotFoundException $e Original exception to wrap and handle
      * @return Response
      */
-    private function handleModelNotFound(ModelNotFoundException $e)
+    private function handleModelNotFound(ModelNotFoundException $e): Response
     {
         $e = new NotFoundHttpException($e->getMessage(), $e, $e->getCode());
         return $this->handle($e);
@@ -101,9 +106,10 @@ class ApiExceptionHandler extends DingoApiHandler
      * in body response
      *
      * @param UnauthorizedHttpException $e Original exception to wrap and handle
+     *
      * @return Response
      */
-    private function handleUnauthorized(UnauthorizedHttpException $e)
+    private function handleUnauthorized(UnauthorizedHttpException $e): Response
     {
         if ($e->getPrevious() instanceof TokenExpiredException) {
             $e = new UnauthorizedHttpException('JWTAuth', $e->getMessage(), $e, 498);

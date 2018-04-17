@@ -9,20 +9,11 @@ use Illuminate\Support\ServiceProvider;
 class SaritasaDingoApiServiceProvider extends ServiceProvider
 {
     /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-    }
-
-    /**
      * Register any application services.
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->app->register(DingoApiServiceProvider::class);
         $this->registerApiExceptionHandler();
@@ -33,13 +24,13 @@ class SaritasaDingoApiServiceProvider extends ServiceProvider
         $this->mergeConfigFrom($configPath, 'api');
     }
 
-    private function registerApiExceptionHandler()
+    private function registerApiExceptionHandler(): void
     {
         $this->app->singleton('app.api.exception', ApiExceptionHandler::class);
-        app('app.api.exception');
+        $this->app->make('app.api.exception');
     }
 
-    private function registerRouterHelper()
+    private function registerRouterHelper(): void
     {
         require_once __DIR__ . '/Helpers/router.php';
     }

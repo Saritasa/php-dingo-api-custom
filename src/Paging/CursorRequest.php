@@ -20,10 +20,18 @@ class CursorRequest implements Arrayable
     const KEYS = ['per_page', 'current'];
     const PROPERTIES = ['pageSize', 'current'];
 
-    /* @var int */
+    /**
+     * Rows on page.
+     *
+     * @var int
+     */
     private $pageSize;
 
-    /* @var int */
+    /**
+     * Current page number.
+     *
+     * @var int
+     */
     private $current;
 
     /**
@@ -52,14 +60,10 @@ class CursorRequest implements Arrayable
 
     public function __get($name)
     {
-        switch ($name) {
-            case 'pageSize':
-                return $this->pageSize;
-            case static::CURRENT:
-                return $this->current;
-            default:
-                throw new PagingException('Unknown cursor property requested: '.$name);
+        if (property_exists($this, $name)) {
+            return $this->$name;
         }
+        throw new PagingException("Unknown cursor property requested: $name");
     }
 
     /**
@@ -67,7 +71,7 @@ class CursorRequest implements Arrayable
      *
      * @return array
      */
-    public function toArray()
+    public function toArray(): array
     {
         return [
             static::PAGE_SIZE => $this->pageSize,

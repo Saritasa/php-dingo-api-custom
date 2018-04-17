@@ -55,7 +55,7 @@ class CursorResult extends Cursor implements Arrayable
      *
      * @return array
      */
-    public function toArray()
+    public function toArray(): array
     {
         return ['results' => $this->items];
     }

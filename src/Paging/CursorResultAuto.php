@@ -24,16 +24,16 @@ class CursorResultAuto extends CursorResult
      */
     public function __construct(CursorRequest $cursorRequest, Collection $items, $prev = null, $next = null)
     {
-        $current = $cursorRequest->current ?: $this->getKeyOrNull($items->first());
+        $current = $cursorRequest->current ?? $this->getKeyOrNull($items->first());
         $count = $items->count();
 
-        if ($next == null && $count >= $cursorRequest->pageSize) {
+        if (!$next && $count >= $cursorRequest->pageSize) {
             $next = $this->getKeyOrNull($items->last());
         }
 
         if ($this->isIntegerKey($current, $items->first())) {
             $current = (int)$cursorRequest->current;
-            if ($next != null) {
+            if ($next) {
                 $next = (int)$next;
             }
             $prev = $current ? $current - $cursorRequest->pageSize : null;
@@ -47,31 +47,34 @@ class CursorResultAuto extends CursorResult
 
     /**
      * Try to get model row number or key. Return row number column if exists.
+     *
+     * @param Object|null $model
+     *
+     * @return string|null
      */
-    protected function getKeyOrNull($model)
+    protected function getKeyOrNull($model): ?string
     {
-        if ($model == null) {
+        if (!$model) {
             return null;
         }
-        return $model->{self::ROW_NUM_COLUMN} ?: ($model instanceof Model ? $model->getKey() : null);
+        return $model->{self::ROW_NUM_COLUMN} ?? ($model instanceof Model ? $model->getKey() : null);
     }
 
     /**
      * Detect, if cursor value is integer or not.
      * Extract key type from model, if possible, otherwise just check cursor value type
      *
-     * @param mixed $current Current curor value
+     * @param mixed $current Current cursor value
      * @param mixed $model one of items or null
+     *
      * @return boolean
      */
     protected function isIntegerKey($current, $model): bool
     {
-        if ($model != null && $model instanceof Model) {
-            return !empty($model->{self::ROW_NUM_COLUMN}) || $model->getKeyType() == 'int';
-        } else {
-            if ($current != null && is_numeric($current) || ctype_digit($current)) {
-                return true;
-            }
+        if ($model && $model instanceof Model) {
+            return !empty($model->{self::ROW_NUM_COLUMN}) || $model->getKeyType() === 'int';
+        } elseif ($current !== null && is_numeric($current) || ctype_digit($current)) {
+            return true;
         }
         return false;
     }

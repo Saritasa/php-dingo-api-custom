@@ -12,9 +12,9 @@ use League\Fractal\Serializer\ArraySerializer as DingoArraySerializer;
  */
 class CustomArraySerializer extends DingoArraySerializer
 {
-    public function meta(array $meta)
+    public function meta(array $meta): array
     {
-        return empty($meta) ? [] : $meta;
+        return $meta;
     }
 
     /**

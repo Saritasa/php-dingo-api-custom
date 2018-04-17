@@ -2,12 +2,11 @@
 
 namespace Saritasa\DingoApi\Traits;
 
-use App\Models\User;
 use Dingo\Api\Auth\Auth;
 
 trait CurrentApiUserTrait
 {
-    protected function user(): User
+    protected function user()
     {
         return app(Auth::class)->user();
     }
