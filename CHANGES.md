@@ -1,5 +1,12 @@
 # Changes History
 
+2.0.2
+-----
++ Improve documentation.
++ Refactor code.
++ Add CursorResult unit tests
++ Add PagingInfo unit tests
+
 2.0.1
 -----
 + Resolve issue with CursorRequest initialisation
