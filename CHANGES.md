@@ -1,5 +1,9 @@
 # Changes History
 
+2.0.3
+-----
+Switched to Dingo/Api 2.1 (which has support of laravel 5.8)
+
 2.0.2
 -----
 Switched to Dingo/Api 2.0 beta (which contains bugfix in authentication)
