@@ -1,6 +1,6 @@
 # Changes History
 
-2.0.3
+2.1.0
 -----
 Switched to Dingo/Api 2.1 (which has support of laravel 5.8)
 
