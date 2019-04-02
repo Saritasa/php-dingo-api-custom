@@ -27,6 +27,6 @@ class CustomArraySerializer extends DingoArraySerializer
      */
     public function collection($resourceKey, array $data)
     {
-        return [$resourceKey ?: 'results' => $data];
+        return $resourceKey === '' ? $data : [$resourceKey ?: 'results' => $data];
     }
 }
