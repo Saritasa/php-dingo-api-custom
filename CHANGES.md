@@ -1,5 +1,10 @@
 # Changes History
 
+2.1.1
+-----
+If collection resource key explicitly set to empty string, it won't be wrapped into 'resource' envelope.
+See [this](https://stackoverflow.com/questions/33454645/dingo-api-remove-data-envelope) for details.
+
 2.1.0
 -----
 Switched to Dingo/Api 2.1 (which has support of laravel 5.8)
