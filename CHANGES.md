@@ -1,5 +1,9 @@
 # Changes History
 
+2.2.0
+-----
+Declare compatibility with Laravel 6.0+
+
 2.1.1
 -----
 If collection resource key explicitly set to empty string, it won't be wrapped into 'resource' envelope.
