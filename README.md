@@ -11,7 +11,7 @@ Custom settings and extensions for Dingo/Api package
 See https://github.com/dingo/api
 
 
-## Laravel 5.x
+## Laravel 5.x/6x
 
 Install the ```saritasa/dingo-api-custom``` package:
 
