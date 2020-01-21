@@ -2,7 +2,8 @@
 
 2.2.0
 -----
-Declare compatibility with Laravel 6.0+
++ Declare compatibility with Laravel 6.0+
++ Drop PHP 7.0 support and Travis CI testing
 
 2.1.1
 -----
