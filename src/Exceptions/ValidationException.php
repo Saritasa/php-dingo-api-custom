@@ -53,7 +53,8 @@ class ValidationException extends HttpException implements MessageBagErrors
                 'messages' => $messages
             ];
         }
-        return new MessageBag($result);
+
+        return (new MessageBag())->merge($result);
     }
 
     /**

@@ -1,5 +1,9 @@
 # Changes History
 
+2.2.1
+-----
+Fix notice in the Saritasa\DingoApi\Exceptions\ValidationException at transforming errors
+
 2.2.0
 -----
 + Declare compatibility with Laravel 6.0+
