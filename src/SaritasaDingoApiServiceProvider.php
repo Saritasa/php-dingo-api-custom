@@ -3,6 +3,8 @@
 namespace Saritasa\DingoApi;
 
 use Dingo\Api\Provider\LaravelServiceProvider as DingoApiServiceProvider;
+use League\Fractal\ScopeFactory;
+use League\Fractal\ScopeFactoryInterface;
 use Saritasa\DingoApi\Exceptions\ApiExceptionHandler;
 use Illuminate\Support\ServiceProvider;
 
@@ -25,6 +27,7 @@ class SaritasaDingoApiServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->register(DingoApiServiceProvider::class);
+        $this->app->bindIf(ScopeFactoryInterface::class, ScopeFactory::class);
         $this->registerApiExceptionHandler();
 
         $this->registerRouterHelper();
