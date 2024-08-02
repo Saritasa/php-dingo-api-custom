@@ -12,7 +12,7 @@ use League\Fractal\Serializer\ArraySerializer as DingoArraySerializer;
  */
 class CustomArraySerializer extends DingoArraySerializer
 {
-    public function meta(array $meta)
+    public function meta(array $meta): array
     {
         return empty($meta) ? [] : $meta;
     }
@@ -25,7 +25,7 @@ class CustomArraySerializer extends DingoArraySerializer
      *
      * @return array
      */
-    public function collection($resourceKey, array $data)
+    public function collection($resourceKey, array $data): array
     {
         return $resourceKey === '' ? $data : [$resourceKey ?: 'results' => $data];
     }

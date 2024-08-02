@@ -37,7 +37,7 @@ class DingoApiFractalAdapter extends Fractal
      * @param Request $request HTTP Request beeing processed
      * @return array
      */
-    public function transform($response, $transformer, Binding $binding, Request $request)
+    public function transform($response, $transformer, Binding $binding, Request $request): array
     {
         $this->parseFractalIncludes($request);
 
