@@ -1,5 +1,10 @@
 # Changes History
 
+3.0.0
+-----
++ Declare compatibility with up to Laravel 11
++ Changed dingo/api package to api-ecosystem-for-laravel/dingo-api
+
 2.2.2
 -----
 Fix for dingo/api [Known issue](https://github.com/dingo/api/wiki/Known-Issues) [#1636](https://github.com/dingo/api/issues/1636) with ScopeFactory binding.

@@ -14,7 +14,7 @@ use Saritasa\Exceptions\PermissionsException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
-use Tymon\JWTAuth\Exceptions\TokenExpiredException;
+use PHPOpenSourceSaver\JWTAuth\Exceptions\TokenExpiredException;
 
 class ApiExceptionHandler extends DingoApiHandler
 {

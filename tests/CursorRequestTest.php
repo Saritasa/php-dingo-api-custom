@@ -16,7 +16,7 @@ class CursorRequestTest extends TestCase
     const DEFAULT_PAGE_SIZE_VALUE = 29;
     const DEFAULT_CURRENT_VALUE = 0;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 

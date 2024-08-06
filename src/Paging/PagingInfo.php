@@ -123,7 +123,7 @@ class PagingInfo implements Arrayable, Jsonable, \JsonSerializable
      *
      * @return array
      */
-    public function toArray()
+    public function toArray(): array
     {
         return [
             PAGE => $this->page,
