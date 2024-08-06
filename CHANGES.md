@@ -1,6 +1,6 @@
 # Changes History
 
-2.3.1
+3.0.0
 -----
 + Declare compatibility with up to Laravel 11
 + Changed dingo/api package to api-ecosystem-for-laravel/dingo-api
